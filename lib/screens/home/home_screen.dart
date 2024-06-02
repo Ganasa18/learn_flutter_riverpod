@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo_riverpod/config/config.dart';
+import 'package:flutter_todo_riverpod/screens/home/home_controller.dart';
 import 'package:flutter_todo_riverpod/services/services.dart';
 import 'package:flutter_todo_riverpod/utils/utils.dart';
 import 'package:flutter_todo_riverpod/widgets/widgets.dart';
@@ -17,8 +18,9 @@ class HomeScreen extends ConsumerWidget {
     final deviceSize = context.deviceSize;
     final date = ref.watch(dateProvider);
     final taskState = ref.watch(tasksProvider);
-    final inCompletedTasks = _incompltedTask(taskState.tasks, ref);
-    final completedTasks = _compltedTask(taskState.tasks, ref);
+    final inCompletedTasks =
+        HomeController().incompltedTask(taskState.tasks, ref);
+    final completedTasks = HomeController().compltedTask(taskState.tasks, ref);
 
     return Scaffold(
       body: Stack(
@@ -87,35 +89,5 @@ class HomeScreen extends ConsumerWidget {
         ],
       ),
     );
-  }
-
-  List<Task> _incompltedTask(List<Task> tasks, WidgetRef ref) {
-    final date = ref.watch(dateProvider);
-    final List<Task> filteredTask = [];
-
-    for (var task in tasks) {
-      if (!task.isCompleted) {
-        final isTaskDay = Helpers.isTaskFromSelectedDate(task, date);
-        if (isTaskDay) {
-          filteredTask.add(task);
-        }
-      }
-    }
-    return filteredTask;
-  }
-
-  List<Task> _compltedTask(List<Task> tasks, WidgetRef ref) {
-    final date = ref.watch(dateProvider);
-    final List<Task> filteredTask = [];
-
-    for (var task in tasks) {
-      if (task.isCompleted) {
-        final isTaskDay = Helpers.isTaskFromSelectedDate(task, date);
-        if (isTaskDay) {
-          filteredTask.add(task);
-        }
-      }
-    }
-    return filteredTask;
   }
 }
