@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo_riverpod/config/config.dart';
 import 'package:flutter_todo_riverpod/screens/home/home_controller.dart';
@@ -39,8 +40,8 @@ class HomeScreen extends ConsumerWidget {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  const DisplayWhiteText(
-                    text: 'My Todo List',
+                  DisplayWhiteText(
+                    text: ' ${dotenv.env['APP_NAME']}',
                     fontSize: 40,
                   ),
                 ],
