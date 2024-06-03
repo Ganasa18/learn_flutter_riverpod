@@ -51,6 +51,22 @@ android {
             signingConfig = signingConfigs.debug
         }
     }
+
+    flavorDimensions "flutter_todo_riverpod"
+    productFlavors {
+        dev {
+            dimension "flutter_todo_riverpod"
+            applicationIdSuffix = ".dev"
+            resValue "string", "app_name", "Flutter Todo Riverpod DEV"
+            versionNameSuffix = ".dev"
+        }
+        prod {
+            dimension "flutter_todo_riverpod"
+            applicationIdSuffix = ".prod"
+            resValue "string", "app_name", "Flutter Todo Riverpod PROD"
+            versionNameSuffix = ".prod"
+        }
+    }
 }
 
 flutter {

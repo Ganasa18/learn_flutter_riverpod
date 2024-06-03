@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
     final taskState = ref.watch(tasksProvider);
     final inCompletedTasks =
         HomeController().incompltedTask(taskState.tasks, ref);
-    final completedTasks = HomeController().compltedTask(taskState.tasks, ref);
+    final completedTasks = HomeController().completedTask(taskState.tasks, ref);
 
     return Scaffold(
       body: Stack(

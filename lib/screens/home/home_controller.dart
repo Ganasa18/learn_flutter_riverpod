@@ -24,7 +24,7 @@ class HomeController {
     return filteredTask;
   }
 
-  List<Task> compltedTask(List<Task> tasks, WidgetRef ref) {
+  List<Task> completedTask(List<Task> tasks, WidgetRef ref) {
     final date = ref.watch(dateProvider);
     final List<Task> filteredTask = [];
 
